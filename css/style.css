@@ -452,6 +452,11 @@ h2 {
 .navigation.container-fluid {
   position: fixed;
 }
+@media (max-width: 768px) {
+  .navigation.container-fluid {
+    position: absolute;
+  }
+}
 
 .navbar {
   width: 100%;

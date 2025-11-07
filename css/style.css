@@ -70,7 +70,6 @@
 body {
   background-color: #070707;
   color: #f0f0f0;
-  overflow-x: hidden;
   font-family: "Montserrat", "Open sans", sans-serif, "Yu Gothic", "Meiryo";
   font-style: normal;
   scroll-behavior: auto !important;
@@ -251,7 +250,7 @@ h2 {
   overflow: hidden;
   user-select: none;
   pointer-events: none;
-  background-image: url("https://raw.githubusercontent.com/Rixiz/rixiz.github.io/refs/heads/main/img/Unity_qvL47RRhcm.png");
+  background-image: url("../img/header-bg.png");
   background-size: cover;
   z-index: -5;
 }

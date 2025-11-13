@@ -1000,7 +1000,7 @@ li.current a {
 }
 .info-container {
   position: relative;
-  max-width: 600px;
+  max-width: 550px;
   width: 80%; /* 幅を固定またはパーセンテージで指定 */
   margin: 0 auto; /* 上下のマージンは0、左右のマージンは自動で中央配置 */
 }
@@ -1049,8 +1049,8 @@ li.current a {
   top: 0;
   border-radius: 30px;
   img {
-    width: 135px;
-    height: 135px;
+    width: 128px;
+    height: 128px;
     border-radius: 50%;
   }
 }

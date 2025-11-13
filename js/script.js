@@ -375,6 +375,12 @@ barba.init({
           const grid = next.container.querySelector(".masonry-item");
 
           if (grid) {
+            imagesLoaded(grid, function () {
+              const msnry = Masonry.data(grid);
+              if (msnry) {
+                msnry.layout();
+              }
+            });
             gsap.to(".masonry-item", {
               opacity: 1,
               duration: 0.5, //

@@ -1074,9 +1074,11 @@ li.current a {
 }
 @media (max-width: 767px) {
   .info-icon {
+    width: 150px;
+    height: 150px;
     position: absolute;
-    padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-right: 0;
+    padding-left: 0;
 
     top: -170px;
     left: 50%;

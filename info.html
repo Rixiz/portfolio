@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body data-barba="wrapper">
+  <body data-barba="wrapper" class="info-main">
     <div id="progress-bar"></div>
     <section data-barba="container" data-barba-namespace="info" class="info">
       <!-- Navbar -->
@@ -65,8 +65,9 @@
       </div>
       <!-- End Navbar -->
       <!-- Info Header -->
-      <div class="transition-wrap info-main">
-        <div class="container-fluid p-0" style="height: 100px">
+      <div class="transition-wrap">
+        <div class="info-background"></div>
+        <div class="container-fluid p-0" style="height: 150px">
           <div class="d-flex justify-content-md-center"></div>
         </div>
         <div class="container-fluid p-0" id="introduction">
@@ -136,9 +137,9 @@
               </div>
             </div>
           </div>
+          <div class="container-fluid p-0" style="height: calc(100vh - 1000px)"></div>
         </div>
       </div>
-      <hr class="under-hr" />
       <!-- Footer -->
       <div class="container-fluid container-all-purpose footer">
         <div class="row">

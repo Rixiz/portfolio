@@ -363,9 +363,26 @@ barba.init({
 
         return tl;
       },
-      afterEnter() {
+      afterEnter({ next }) {
+        // 'next' (次のページのコンテナ) を受け取る
+
+        // 元の80msの遅延
         setTimeout(() => {
+          // ここで initAllScripts() が実行され、
+          // Masonryが（まだ透明な状態で）初期化・レイアウト計算されます
           initAllScripts();
+
+          const grid = next.container.querySelector(".masonry-item");
+
+          if (grid) {
+            gsap.to(".masonry-item", {
+              opacity: 1,
+              duration: 0.5, //
+              ease: "power1.out",
+              delay: 0.2, // 初期化処理の完了を待つためのごく僅かな遅延
+              stagger: 0.15,
+            });
+          }
         }, 80);
       },
     },
@@ -378,5 +395,12 @@ document.addEventListener("DOMContentLoaded", () => {
     opacity: 1,
     duration: 2,
     ease: "power1.out",
+  });
+  gsap.to(".masonry-item", {
+    opacity: 1,
+    duration: 0.5, //
+    ease: "power1.out",
+    delay: 0.2, // 初期化処理の完了を待つためのごく僅かな遅延
+    stagger: 0.15,
   });
 });

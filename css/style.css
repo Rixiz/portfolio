@@ -1306,5 +1306,8 @@ hr.under-hr {
 }
 
 .copyright-footer {
-  font-size: 14px;
+  font-size: 12px;
+  color: #7c7c7c;
+  font-weight: 500;
+  font-size: "Arial", "open-sans";
 }

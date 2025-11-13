@@ -1015,27 +1015,29 @@ li.current a {
 }
 
 .info-title {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 36px;
   transform: translateY(-8px);
   letter-spacing: 0.1em;
 }
 .info-name {
   letter-spacing: 0.08rem;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   margin-bottom: 1px;
-  font-family: "Montserrat", "Open sans", sans-serif;
-  color: #6f6f6f;
+  color: #8c8b8b;
   margin-top: -17px;
+  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Yu Ghothic", "Meiryo", sans-serif;
 }
 .info-content {
   letter-spacing: 0.08rem;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   margin-bottom: 1px;
-  font-family: "Montserrat", "Open sans", sans-serif;
-  color: #6f6f6f;
+  color: #8c8b8b;
+  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Yu Ghothic", "Meiryo", sans-serif;
 }
 
 .info-icon {

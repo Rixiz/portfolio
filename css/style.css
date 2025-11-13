@@ -11,11 +11,24 @@
   padding: 20px;
 }
 
-.masonry-grid-item {
-  width: 100px;
-  margin-bottom: 10px;
+.masonry-item {
+  width: 50%;
+  padding: 5px;
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
-
+@media (max-width: 768px) {
+  .masonry-item {
+    width: 100%;
+    padding: 5px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
 .main-carousel {
   margin-right: auto;
   margin-left: auto;
@@ -1027,8 +1040,8 @@ li.current a {
   margin-bottom: 1px;
   color: #8c8b8b;
   margin-top: -17px;
-  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", "Yu Ghothic", "Meiryo", sans-serif;
+  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic",
+    "Meiryo", sans-serif;
 }
 .info-content {
   letter-spacing: 0.08rem;
@@ -1036,8 +1049,8 @@ li.current a {
   font-size: 14px;
   margin-bottom: 1px;
   color: #8c8b8b;
-  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", "Yu Ghothic", "Meiryo", sans-serif;
+  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic",
+    "Meiryo", sans-serif;
 }
 
 .info-icon {

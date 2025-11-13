@@ -15,11 +15,9 @@ function initflickity() {
     arrowShape: "M67.37,100L28.195,50,67.37,0,71.8,5.5,37.581,50,71.8,94.5Z",
   });
 }
-$(".masonry-grid").masonry({
-  // set itemSelector so .grid-sizer is not used in layout
-  itemSelector: ".masonry-grid-item",
-  gutter: 50,
-  percentPosition: true,
+
+var $grid = $(".masonry").masonry({
+  itemSelector: ".masonry-item",
 });
 
 requestAnimationFrame(raf);
@@ -259,6 +257,9 @@ function initAllScripts() {
   initMenuToggle();
   initSlider();
   initflickity();
+  $grid.imagesLoaded().progress(function () {
+    $grid.masonry("layout");
+  });
 }
 
 // --------------------------

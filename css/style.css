@@ -1015,6 +1015,13 @@ li.current a {
   width: 80%; /* 幅を固定またはパーセンテージで指定 */
   margin: 0 auto; /* 上下のマージンは0、左右のマージンは自動で中央配置 */
 }
+@media (max-width: 767px) {
+  .info-container {
+    max-width: 100%;
+    width: 100%;
+    padding: 10px;
+  }
+}
 
 .info-header {
   top: 50%;
@@ -1067,18 +1074,16 @@ li.current a {
 }
 @media (max-width: 767px) {
   .info-icon {
-    display: none;
     position: absolute;
     padding-right: calc(var(--bs-gutter-x) * 0.5);
     padding-left: calc(var(--bs-gutter-x) * 0.5);
 
-    top: -150px;
+    top: -170px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 30px;
     img {
-      width: 300px;
-      height: 300px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
     }
   }

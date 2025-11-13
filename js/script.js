@@ -16,10 +16,6 @@ function initflickity() {
   });
 }
 
-var $grid = $(".masonry").masonry({
-  itemSelector: ".masonry-item",
-});
-
 requestAnimationFrame(raf);
 function initArrowScroll() {
   const scrollBtn = document.getElementById("scroll-button");
@@ -257,8 +253,8 @@ function initAllScripts() {
   initMenuToggle();
   initSlider();
   initflickity();
-  $grid.imagesLoaded().progress(function () {
-    $grid.masonry("layout");
+  $(".masonry").masonry({
+    itemSelector: ".masonry-item",
   });
 }
 

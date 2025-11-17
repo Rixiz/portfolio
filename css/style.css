@@ -541,9 +541,9 @@ li.current a {
 }
 
 .button_container {
-  top: 15%;
+  top: 5%;
   position: absolute;
-  right: 1px;
+  right: 2px;
   height: 27px;
   width: 27px;
   cursor: pointer;
@@ -580,7 +580,7 @@ li.current a {
   background: #fff;
   border: none;
   height: 2px;
-  width: 27px;
+  width: 25px;
   position: absolute;
   transition: all 0.35s ease;
   cursor: pointer;
@@ -595,6 +595,14 @@ li.current a {
 }
 
 .button_container span:nth-of-type(3) {
+  top: 16px;
+}
+
+.button_container:hover span:nth-of-type(2) {
+  top: 8.3px;
+}
+
+.button_container:hover span:nth-of-type(3) {
   top: 16px;
 }
 
@@ -640,8 +648,8 @@ li.current a {
   height: 30%;
   top: 45%;
   transform: translateY(-50%);
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 600;
   text-align: center;
 }
 

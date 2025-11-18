@@ -92,7 +92,7 @@ function initNavbar() {
     y: 0,
     opacity: 1,
     duration: 1.6,
-    delay: 0.6,
+    delay: 0.2,
     ease: "power2.inOut",
   });
 }
@@ -101,29 +101,39 @@ function initBannerTextAnimation() {
   const $bannerText = document.querySelectorAll(".banner-h1, .banner-h2");
   const $bannerTextContainer = document.querySelector(".banner-text-container");
   const $transparentButton = document.querySelectorAll(".transparent-button");
+  const $lastupdatedText = document.querySelectorAll(".last-updated-text");
   if (!$bannerText) return;
   gsap.set($bannerText, { y: 60, opacity: 0 });
   gsap.set($bannerTextContainer, { opacity: 0 });
-  gsap.set($transparentButton, { y: 60, opacity: 0 });
+  gsap.set($transparentButton, { y: 0, opacity: 0 });
+  gsap.set($lastupdatedText, { y: 0, opacity: 0 });
   gsap.to($bannerText, {
     y: 0,
     opacity: 1,
     duration: 1.2,
-    delay: 2.0,
+    delay: 1.5,
     stagger: 0.2,
     ease: "power2.out",
   });
   gsap.to($bannerTextContainer, {
     opacity: 1,
     duration: 1.2,
-    delay: 2.0,
+    delay: 1.5,
     ease: "power2.out",
   });
   gsap.to($transparentButton, {
     y: 0,
     opacity: 1,
     duration: 1.2,
-    delay: 3.7,
+    delay: 3.0,
+    stagger: 0.2,
+    ease: "power2.out",
+  });
+  gsap.to($lastupdatedText, {
+    y: 0,
+    opacity: 1,
+    duration: 1.2,
+    delay: 3.0,
     stagger: 0.2,
     ease: "power2.out",
   });

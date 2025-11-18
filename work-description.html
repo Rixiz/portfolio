@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
   <head>
     <!-- Meta -->
-    <title>Drawing - Rixiz</title>
+    <title>Info - Rixiz</title>
     <meta charset="UTF-8" />
     <meta name="description" content="Rixiz. A 3DArt Portfolio site." />
     <meta name="author" content="Rixiz" />
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body data-barba="wrapper">
+  <body data-barba="wrapper" class="info-main">
     <div id="progress-bar"></div>
     <section data-barba="container" data-barba-namespace="info" class="info">
       <!-- Navbar -->
@@ -65,61 +65,37 @@
       </div>
       <!-- End Navbar -->
       <!-- Info Header -->
-      <div class="transition-wrap info-main">
-        <div class="container-fluid" style="height: 150px">
+      <div class="transition-wrap">
+        <div class="info-background"></div>
+        <div class="container-fluid p-0" style="height: 250px"></div>
+        <div class="container-fluid p-0" id="introduction">
           <div class="d-flex justify-content-md-center">
-            <h1 class="info-header"></h1>
-          </div>
-        </div>
-        <div class="gallery">
-          <div class="container-fluid p-0 container-all-purpose">
-            <div class="drawing-category">Dessin</div>
-            <!-- <div class="gallery-container">
-              <p><img class="gallery-item" src="img/Dessin-.jpg" alt="Card image cap" /></p>
-              <p><img class="gallery-item" src="img/Dessin-[6].jpg" alt="Card image cap" /></p>
-              <p><img class="gallery-item" src="img/Dessin-[2].jpg" alt="Card image cap" /></p>
-              <p><img class="gallery-item" src="img/Dessin-[4].jpg" alt="Card image cap" /></p>
-              <p><img class="gallery-item" src="img/Dessin-[5].jpg" alt="Card image cap" /></p>
-            </div> -->
-            <div class="masonry">
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (9).jpg" class="drawing-image" alt="dessin" />
-                <div class="drawing-caption">静物デッサン | 制作時間8時間</div>
-              </div>
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (5).jpg" class="drawing-image" alt="dessin" />
-                <div class="drawing-caption">卓上構成デッサン | 制作時間8時間</div>
-              </div>
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (7).jpg" class="drawing-image" alt="dessin" />
-                <div class="drawing-caption">静物デッサン | 制作時間8時間</div>
-              </div>
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (3).jpg" class="drawing-image" alt="dessin" />
-                <div class="drawing-caption">卓上構成 デッサン | 制作時間8時間</div>
-              </div>
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (8).jpg" class="drawing-image" alt="dessin" />
-                <div class="drawing-caption">想定デッサン | 制作時間8時間</div>
-              </div>
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (2).jpg" class="drawing-image" alt="dessin" />
-                <div class="drawing-caption">細密デッサン | 制作時間6時間</div>
-              </div>
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (4).jpg" class="drawing-image" alt="dessin" />
-                <div class="drawing-caption">風景デッサン | 制作時間8時間</div>
-              </div>
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (1).jpg" class="drawing-image" lt="dessin" />
-                <div class="drawing-caption">静物デッサン | 制作時間4時間</div>
-              </div>
-              <div class="masonry-item">
-                <img src="img/dessin/Dessin_IMG (6).jpg" class="drawing-image" alt="dessin" />
-                <div class="drawing-caption">静物デッサン | 制作時間8時間</div>
+            <div class="container-all-purpose about-container">
+              <div class="row">
+                <div class="info-container">
+                  <div class="mb-3">
+                    <p class="work-content" style="text-align: center">
+                      作品詳細ページは現在作成、調整中です。
+                    </p>
+                    <p class="info-content" style="text-align: center">
+                      作品詳細については、お手数ですが下記のPDFポートフォリオからご確認のほどよろしくお願い致します。
+                    </p>
+                  </div>
+                  <div class="mb-3 justify-content-center d-flex">
+                    <a
+                      ref
+                      class="info-contact"
+                      href="/pdf/portfolio-latest.pdf"
+                      style="color: rgb(152, 152, 152)"
+                      target="_blank"
+                      >VIEW PDF PORTFOLIO</a
+                    >
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <div class="container-fluid p-0" style="height: calc(100vh - 750px)"></div>
         </div>
       </div>
       <!-- Footer -->

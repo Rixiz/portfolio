@@ -313,7 +313,7 @@ barba.init({
         console.log(scrollY);
         gsap.set(".navigation", {
           top: scrollY - "500px",
-          opacity: 1,
+          opacity: 0,
         });
         gsap.to(".navigation", {
           top: -scrollY - "500px",

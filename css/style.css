@@ -941,7 +941,6 @@ li.current a {
 .grid-item {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 1;
   overflow: hidden;
   margin-bottom: 10px;
 }
@@ -952,6 +951,10 @@ li.current a {
 
 .ratio16_9 {
   aspect-ratio: 16 / 9;
+}
+
+.ratio21_9 {
+  aspect-ratio: 21 / 9;
 }
 
 .ratio1_1 {

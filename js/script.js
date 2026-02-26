@@ -111,21 +111,20 @@ function initBannerTextAnimation() {
     y: 0,
     opacity: 1,
     duration: 1.2,
-    delay: 1.5,
-    stagger: 0.2,
+    delay: 0.8,
     ease: "power2.out",
   });
   gsap.to($bannerTextContainer, {
     opacity: 1,
     duration: 1.2,
-    delay: 1.5,
+    delay: 0.8,
     ease: "power2.out",
   });
   gsap.to($transparentButton, {
     y: 0,
     opacity: 1,
     duration: 1.2,
-    delay: 3.0,
+    delay: 2.0,
     stagger: 0.2,
     ease: "power2.out",
   });
@@ -133,7 +132,7 @@ function initBannerTextAnimation() {
     y: 0,
     opacity: 1,
     duration: 1.2,
-    delay: 3.0,
+    delay: 2.0,
     stagger: 0.2,
     ease: "power2.out",
   });
@@ -247,7 +246,7 @@ function initSlider() {
         $slides.stop(true, true).fadeOut(fadeSpeed);
         $slides.eq(0).fadeIn(fadeSpeed);
         imgNo = 0; // 番号をリセット
-      }
+      },
     );
   });
 }
@@ -305,50 +304,47 @@ barba.init({
     {
       name: "slide-up",
       sync: true,
-      leave({ current, next }) {
+
+      before() {
+        document.body.style.pointerEvents = "none";
+        console.log("Transition started: Clicks disabled.");
+      },
+
+      leave({ current }) {
         progressBar.start();
-        const done = this.async();
         const scrollY = window.scrollY;
-        const viewportHeight = window.innerHeight;
-        console.log(scrollY);
-        gsap.set(".navigation", {
-          top: scrollY - "500px",
-          opacity: 0,
-        });
-        gsap.to(".navigation", {
-          top: -scrollY - "500px",
-          opacity: 0,
-          duration: 0.5,
-          ease: "power2.inOut",
-        });
+
+        // Scope to current container to avoid affecting the next page
+        const currentNav = current.container.querySelector(".navigation");
+
+        // Use timeline and return it. Barba automatically waits for it to complete.
+        const tl = gsap.timeline();
+
+        if (currentNav) {
+          // Fix math error: scrollY - 500 (not "500px")
+          gsap.set(currentNav, {
+            top: scrollY - "500px",
+            opacity: 1,
+          });
+          tl.to(
+            currentNav,
+            {
+              top: -scrollY - "500px",
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.inOut",
+            },
+            0,
+          );
+        }
+
+        // Fix current container for scroll-up effect
         gsap.set(current.container, {
           position: "fixed",
           top: -scrollY,
           left: 0,
           width: "100%",
           zIndex: -5,
-        });
-        gsap.set(next.container, {
-          position: "fixed",
-          top: window.innerHeight,
-          left: 0,
-          width: "100%",
-          zIndex: 500,
-        });
-
-        const tl = gsap.timeline({
-          onComplete: () => {
-            gsap.set([current.container, next.container], {
-              clearProps: "all",
-            });
-
-            // 念のためスクロール復元
-            document.body.style.overflow = "";
-            document.documentElement.style.overflow = "";
-
-            progressBar.finish();
-            done();
-          },
         });
 
         tl.to(
@@ -358,9 +354,36 @@ barba.init({
             duration: 1.2,
             ease: "power2.inOut",
           },
-          0
+          0,
         );
 
+        return tl;
+      },
+
+      beforeEnter({ next }) {
+        // Scope to next container
+        const nextNav = next.container.querySelector(".navigation");
+
+        // Hide next navigation initially to prevent FOUC (Flash of Unstyled Content)
+        if (nextNav) {
+          gsap.set(nextNav, { opacity: 0 });
+        }
+
+        // Set initial position for next container (waiting at the bottom)
+        gsap.set(next.container, {
+          position: "fixed",
+          top: window.innerHeight,
+          left: 0,
+          width: "100%",
+          zIndex: 500,
+        });
+      },
+
+      enter({ next }) {
+        const nextNav = next.container.querySelector(".navigation");
+        const tl = gsap.timeline();
+
+        // Slide up the next container
         tl.to(
           next.container,
           {
@@ -368,20 +391,42 @@ barba.init({
             duration: 1.2,
             ease: "power2.inOut",
           },
-          0
+          0,
         );
+
+        // Fade in the new navigation
+        if (nextNav) {
+          tl.to(
+            nextNav,
+            {
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.inOut",
+            },
+            "-=0.5",
+          );
+        }
 
         return tl;
       },
-      afterEnter({ next }) {
-        // 'next' (次のページのコンテナ) を受け取る
 
-        // 元の80msの遅延
+      afterEnter({ current, next }) {
+        // Cleanup styles for both containers
+        gsap.set([current.container, next.container], {
+          clearProps: "all",
+        });
+
+        // Restore scroll behavior
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+
+        progressBar.finish();
+
+        // Initialize scripts and Masonry with a slight delay
         setTimeout(() => {
-          // ここで initAllScripts() が実行され、
-          // Masonryが（まだ透明な状態で）初期化・レイアウト計算されます
           initAllScripts();
 
+          // Ensure Masonry targets only elements in the next container
           const grid = next.container.querySelector(".masonry-item");
 
           if (grid) {
@@ -391,18 +436,63 @@ barba.init({
                 msnry.layout();
               }
             });
-            gsap.to(".masonry-item", {
+
+            // Scope masonry item animation to next container
+            const masonryItems = next.container.querySelectorAll(".masonry-item");
+            gsap.to(masonryItems, {
               opacity: 1,
-              duration: 0.5, //
+              duration: 0.5,
               ease: "power1.out",
-              delay: 0.2, // 初期化処理の完了を待つためのごく僅かな遅延
+              delay: 0.2,
               stagger: 0.15,
             });
           }
         }, 80);
       },
+      after() {
+        document.body.style.pointerEvents = "";
+        console.log("Transition ended: Clicks enabled.");
+      },
     },
   ],
+});
+
+const items = document.querySelectorAll(".grid-item");
+
+items.forEach((item) => {
+  const video = item.querySelector(".hover-video");
+  let pauseTimeout; // タイマーIDを格納する変数
+
+  item.addEventListener("mouseenter", async () => {
+    // 1秒以内に再びホバーされた場合、停止・リセットのタイマーをキャンセルする
+    clearTimeout(pauseTimeout);
+
+    if (!video.src) {
+      video.src = video.dataset.src;
+      video.load();
+      console.log("Video source loaded on hover.");
+    }
+
+    try {
+      await video.play();
+      item.classList.add("is-playing");
+      console.log("Playback started. Thumbnail hidden.");
+    } catch (error) {
+      console.error("Playback failed. The browser might have blocked it.", error);
+    }
+  });
+
+  item.addEventListener("mouseleave", () => {
+    // 1. サムネイルはすぐに表示（フェードイン）を開始させる
+    item.classList.remove("is-playing");
+
+    // 2. 1秒後（1000ミリ秒後）に動画を停止し、最初のフレームに戻す
+    pauseTimeout = setTimeout(() => {
+      video.pause();
+      video.currentTime = 0;
+      console.log("Video paused and reset after delay.");
+    }, 1000);
+  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     <!-- Meta -->
@@ -42,7 +42,7 @@
                   <a class="nav-link" href="drawing.html">Drawing</a>
                 </li>
                 <li class="nav-item px-2 nav-prop">
-                  <a class="nav-link" href="photo.html">Photo</a>
+                  <a class="nav-link" target="_blank" href="/pdf/portfolio-latest.pdf">PDF</a>
                 </li>
               </ul>
             </div>
@@ -68,14 +68,25 @@
       <!-- Banner -->
       <div class="transition-wrap">
         <div id="banner-video">
-          <!-- Vimeo埋め込み
-          <iframe id="banner-vimeo-video"
-          src="https://player.vimeo.com/video/486511696?background=1&autoplay=1&muted=1&loop=1&byline=0&title=0"
+          <video id="banner-vimeo-video" autoplay muted loop playsinline>
+            <source src="https://storage.rixiz.net/PORTFOLIO/REEL20260225.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <!-- <iframe
+            id="banner-vimeo-video"
+            src="https://www.youtube.com/embed/qnrWiTDLnf4?autoplay=1&mute=1&loop=1&playlist=qnrWiTDLnf4&controls=0"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+          >
+          </iframe> -->
+          <!-- <iframe id="banner-vimeo-video"
+          src="https://player.vimeo.com/video/1167643105?background=1&autoplay=1&muted=1&loop=1&byline=0&title=0"
           frameborder="0"
           allow="autoplay; fullscreen"
           allowfullscreen>
           </iframe>
-          <href>-->
+          <href> -->
         </div>
         <div
           class="d-flex vh-100 container-fluid container-all-purpose xs-align-center"
@@ -93,10 +104,10 @@
                   <h1 class="banner-h2">3D Environments, Props, Drawing</h1>
                 </div>
                 <a href="/pdf/portfolio-latest.pdf" class="transparent-button" target="_blank"
-                  >VIEW PDF PORTFOLIO</a
+                  >PDF PORTFOLIO</a
                 >
                 <a href="/info.html" class="transparent-button xl-banner-text">INFO</a>
-                <h4 class="last-updated-text">Last Updated | 25.12.20</h4>
+                <h4 class="last-updated-text">Last Updated | 26.3.12</h4>
               </div>
             </div>
           </div>
@@ -150,82 +161,134 @@
         <!-- End Portfolio-Text -->
         <!-- Gallery-->
         <div class="gallery-grid">
-          <div class="grid-item ratio235_1">
-            <a href="work-description.html"><img src="img/SCAR-H_v3.png" alt="" /></a>
-            <div class="caption">SCAR-H</div>
-          </div>
-          <div class="grid-item ratio4_3">
-            <a href="work-description.html"><img src="img/Wrench_Comp1.jpg" alt="" /></a>
-            <div class="caption">Vintage Wrench</div>
+          <div class="grid-item ratio21_9">
+            <a href="work-description.html"
+              ><img loading="lazy" class="video-thumbnail" src="img/FoggyTemple.png" alt="" />
+              <video
+                class="hover-video"
+                poster="img/FoggyTemple.png"
+                data-src="https://storage.rixiz.net/PORTFOLIO/REEL20260225.mp4"
+                preload="none"
+                muted
+                loop
+                playsinline
+              ></video
+            ></a>
+            <div class="caption">Foggy Temple [WIP]</div>
           </div>
           <div class="grid-item ratio21_9">
-            <a href="work-description.html"><img src="img/cam3.jpg" alt="" /></a>
-            <div class="caption">Temple WIP</div>
-          </div>
-          <div class="grid-item ratio16_9 slideshow-card slider">
-            <ul class="slideList">
-              <li>
-                <a href="work-description.html"> <img src="img/Seclusion.jpg" alt="" /></a>
-              </li>
-              <li>
-                <a href="work-description.html"> <img src="img/Seclusion5.jpg" alt="" /></a>
-              </li>
-              <li>
-                <a href="work-description.html"> <img src="img/Seclusion4.jpg" alt="" /></a>
-              </li>
-              <li>
-                <a href="work-description.html"> <img src="img/Seclusion3.jpg" alt="" /></a>
-              </li>
-              <li>
-                <a href="work-description.html"> <img src="img/Seclusion2.jpg" alt="" /></a>
-              </li>
-            </ul>
-            <div class="progressBar"></div>
-            <div class="caption">VRChat Seclusion</div>
-          </div>
-          <!-- <div class="grid-item ratio16_9">
-            <img src="img/Weemoed.jpg" alt="" />
-            <div class="caption">VRChat Weemoed WIP</div>
-          </div> -->
-          <div class="grid-item ratio16_9 slideshow-card slider">
-            <ul class="slideList">
-              <li>
-                <a href="work-description.html"><img src="img/Weemoed5.jpg" alt="" /></a>
-              </li>
-              <li>
-                <a href="work-description.html"><img src="img/Weemoed4.jpg" alt="" /></a>
-              </li>
-              <li>
-                <a href="work-description.html"><img src="img/Weemoed2.jpg" alt="" /></a>
-              </li>
-              <li>
-                <a href="work-description.html"><img src="img/Weemoed1.jpg" alt="" /></a>
-              </li>
-              <li>
-                <a href="work-description.html"><img src="img/Weemoed3.jpg" alt="" /></a>
-              </li>
-            </ul>
-            <div class="progressBar"></div>
-            <div class="caption">VRChat Weemoed</div>
+            <a href="work-description.html"
+              ><img loading="lazy" src="img/Unity_eQMXesTsB1.png" alt=""
+            /></a>
+            <div class="caption">VRChat | The Lake [WIP]</div>
           </div>
           <div class="grid-row">
-            <div class="grid-item ratio1_1">
-              <a href="work-description.html"><img src="img/outimg12_comp.jpg" alt="" /></a>
+            <div class="grid-item ratio4_3">
+              <a href="work-description.html"
+                ><img loading="lazy" src="img/TabTip_2Va5rewkLi.jpg" alt=""
+              /></a>
+              <div class="caption">Stylized Wooden Crate (Internship)</div>
+            </div>
+            <div class="grid-item ratio3_2">
+              <a href="work-description.html"
+                ><img loading="lazy" src="img/Wrench_Comp1.jpg" alt=""
+              /></a>
+              <div class="caption">Vintage Wrench</div>
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-item ratio235_1 slideshow-card slider">
+              <ul class="slideList">
+                <li>
+                  <a href="work-description.html">
+                    <img loading="lazy" src="img/Seclusion.jpg" alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="work-description.html">
+                    <img loading="lazy" src="img/Seclusion5.jpg" alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="work-description.html">
+                    <img loading="lazy" src="img/Seclusion4.jpg" alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="work-description.html">
+                    <img loading="lazy" src="img/Seclusion3.jpg" alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="work-description.html">
+                    <img loading="lazy" src="img/Seclusion2.jpg" alt=""
+                  /></a>
+                </li>
+              </ul>
+              <div class="progressBar"></div>
+              <div class="caption">VRChat | Seclusion</div>
+            </div>
+            <div class="grid-item ratio4_3">
+              <a href="work-description.html"
+                ><img
+                  loading="lazy"
+                  src="img/Resolve_oBlgOG7miB.png"
+                  class="video-thumbnail"
+                  alt="" /><video
+                  class="hover-video"
+                  data-src="https://storage.rixiz.net/PORTFOLIO/seaside04.mov"
+                  preload="none"
+                  muted
+                  loop
+                  playsinline
+                ></video
+              ></a>
+              <div class="caption">VRChat | Seaside</div>
+            </div>
+          </div>
+          <div class="grid-item ratio235_1 slideshow-card slider">
+            <ul class="slideList">
+              <li>
+                <a href="work-description.html"
+                  ><img loading="lazy" src="img/Weemoed6.png" alt=""
+                /></a>
+              </li>
+              <li>
+                <a href="work-description.html"
+                  ><img loading="lazy" src="img/Weemoed7.png" alt=""
+                /></a>
+              </li>
+              <li>
+                <a href="work-description.html"
+                  ><img loading="lazy" src="img/Weemoed8.png" alt=""
+                /></a>
+              </li>
+              <li>
+                <a href="work-description.html"
+                  ><img loading="lazy" src="img/Weemoed9.png" alt=""
+                /></a>
+              </li>
+              <li>
+                <a href="work-description.html"
+                  ><img loading="lazy" src="img/Weemoed810.png" alt=""
+                /></a>
+              </li>
+            </ul>
+            <div class="progressBar"></div>
+            <div class="caption">VRChat | Weemoed</div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-item ratio2_3">
+              <a href="work-description.html"
+                ><img loading="lazy" src="img/outimg12_comp.jpg" alt=""
+              /></a>
               <div class="caption">Lantern</div>
             </div>
-            <div class="grid-item ratio1_1">
-              <a href="work-description.html"><img src="img/Karambit.jpg" alt="" /></a>
-              <div class="caption">Karambit</div>
-            </div>
-          </div>
-          <div class="grid-row">
-            <div class="grid-item ratio3_2">
-              <a href="work-description.html"><img src="img/Sword.jpg" alt="" /></a>
-              <div class="caption">Sci-Fi Sword</div>
-            </div>
-            <div class="grid-item ratio3_2">
-              <a href="work-description.html"><img src="img/Scythe.jpg" alt="" /></a>
-              <div class="caption">Sci-Fi Scythe</div>
+            <div class="grid-item ratio2_3">
+              <a href="work-description.html"
+                ><img loading="lazy" src="img/Brushup202511.jpg" alt=""
+              /></a>
+              <div class="caption">SCAR-H</div>
             </div>
           </div>
         </div>
@@ -240,6 +303,7 @@
             </div>
           </div>
         </div>
+        <div class="masonry masonry-item"></div>
         <!-- End Footer -->
         <button id="scrollToTop">
           <svg

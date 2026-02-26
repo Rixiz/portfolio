@@ -13,7 +13,7 @@
 
 .masonry-item {
   opacity: 0;
-  width: 50%;
+  width: 33.3%;
   padding: 4px;
   img {
     width: 100%;
@@ -44,8 +44,9 @@
   font-size: 16px;
   transition: all 0.3s ease;
   z-index: 3;
-  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic",
-    "Meiryo", sans-serif;
+  font-family:
+    "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic", "Meiryo",
+    sans-serif;
 }
 
 .drawing-image {
@@ -291,9 +292,32 @@ h2 {
   overflow: hidden;
   user-select: none;
   pointer-events: none;
-  background-image: url("../img/header-bg.png");
+  background-image: url("../img/FoggyTemple.png");
+  background-position: center;
+  filter: brightness(70%);
   background-size: cover;
   z-index: -5;
+}
+
+.video-thumbnail {
+  position: absolute;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.grid-item.is-playing .video-thumbnail {
+  opacity: 0;
+  pointer-events: none; /* 下にある動画のクリックを妨げないようにする */
+}
+
+.hover-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 #banner-vimeo-video {
@@ -350,12 +374,14 @@ h2 {
   padding: 10px 24px;
   border: 1px solid white;
   color: white;
-  background-color: transparent;
+  background-color: rgba(19, 19, 19, 0.521);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: background-color 0.3s ease;
-  font-size: 12px;
+  backdrop-filter: blur(10px);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .transparent-button:hover {
@@ -656,7 +682,10 @@ li.current a {
   height: 100%;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s, visibility 0.35s, height 0.35s;
+  transition:
+    opacity 0.35s,
+    visibility 0.35s,
+    height 0.35s;
   overflow: hidden;
 }
 
@@ -968,6 +997,9 @@ li.current a {
 .ratio4_3 {
   aspect-ratio: 4 / 3;
 }
+.ratio2_3 {
+  aspect-ratio: 2 / 3;
+}
 
 .grid-item img {
   position: absolute;
@@ -1115,8 +1147,9 @@ li.current a {
   margin-bottom: 1px;
   color: #8c8b8b;
   margin-top: -17px;
-  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic",
-    "Meiryo", sans-serif;
+  font-family:
+    "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic", "Meiryo",
+    sans-serif;
 }
 @media (max-width: 767px) {
   .info-title {
@@ -1132,8 +1165,9 @@ li.current a {
   font-size: 14px;
   margin-bottom: 1px;
   color: #8c8b8b;
-  font-family: "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic",
-    "Meiryo", sans-serif;
+  font-family:
+    "Arial", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic", "Meiryo",
+    sans-serif;
 }
 .info-contact {
   margin-top: 35px;
@@ -1145,8 +1179,9 @@ li.current a {
   padding: 8px 24px;
   margin-bottom: 1px;
   color: #8c8b8b;
-  font-family: "Montserrat", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
-    "Yu Ghothic", "Meiryo", sans-serif;
+  font-family:
+    "Montserrat", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Ghothic",
+    "Meiryo", sans-serif;
 }
 
 .info-icon {

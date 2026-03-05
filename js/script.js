@@ -179,55 +179,62 @@ function initSlider() {
     // -----------------------------------------------------
     // 1. 効率化：要素を最初にキャッシュする
     // -----------------------------------------------------
-    const $slider = $(this); // 現在のスライダー
+    const $slider = $(this);
     const $slides = $slider.find(".slideList li");
     const $progress = $slider.find(".progressBar");
     const slideCount = $slides.length;
 
     // スライドが1枚以下の場合は何もしない
     if (slideCount <= 1) {
-      $slides.show(); // 1枚だけなら表示して終わり
-      return; // .each() の次のループへ
+      $slides.show();
+      return;
     }
 
     // -----------------------------------------------------
     // 2. 最適化：data属性から設定値を読み込む
     // -----------------------------------------------------
-    // HTML側で <div class="slider" data-delay="3000" data-speed="500"> のように指定可能
     const delay = $slider.data("delay") || 4500;
-    const fadeSpeed = $slider.data("speed") || 600;
+    const fadeSpeed = $slider.data("speed") || 300;
 
     let timerId;
-    let imgNo = 0; // 現在のスライド番号も外側で管理
+    let imgNo = 0;
 
-    // 念のため重複バインドを防止
+    // 重複バインド防止
     $slider.off("mouseenter mouseleave");
 
     $slider.hover(
       function () {
         // --- mouseenter (ホバー開始) ---
 
-        // ホバー時に常に0番目から開始
-        imgNo = 0;
-        $slides.hide().eq(imgNo).show();
+        // 1. まず現在表示されている画像(0番目と仮定)から
+        //    次の画像(1番目)へ即座にアニメーションさせる
 
-        // プログレスバーを開始
+        // 0番目をフェードアウト
+        $slides.eq(0).stop(true, true).fadeOut(fadeSpeed);
+
+        // 1番目をフェードイン
+        $slides.eq(1).stop(true, true).fadeIn(fadeSpeed);
+
+        // 現在の番号を「1」にセット
+        imgNo = 1;
+
+        // プログレスバーを開始 (1 -> 2 への待機時間用)
         $progress
           .stop(true, true)
           .css("width", 0)
           .show()
           .animate({ width: "100%" }, delay, "linear");
 
-        // タイマーを開始
+        // 2. タイマーを開始 (次は imgNo が 2 になるところからループ)
         timerId = setInterval(function () {
           // 現在のスライドをフェードアウト
-          $slides.eq(imgNo).fadeOut(fadeSpeed);
+          $slides.eq(imgNo).stop(true, true).fadeOut(fadeSpeed);
 
           // 次のスライド番号を計算
           imgNo = (imgNo + 1) % slideCount;
 
           // 次のスライドをフェードイン
-          $slides.eq(imgNo).fadeIn(fadeSpeed);
+          $slides.eq(imgNo).stop(true, true).fadeIn(fadeSpeed);
 
           // プログレスバーをリセットして再開
           $progress.stop(true, true).css("width", 0).animate({ width: "100%" }, delay, "linear");
@@ -236,18 +243,73 @@ function initSlider() {
       function () {
         // --- mouseleave (ホバー終了) ---
 
-        // タイマーを停止
+        // タイマー停止
         clearInterval(timerId);
 
-        // アニメーションをすべて停止し、プログレスバーを隠す
+        // プログレスバー停止・非表示
         $progress.stop(true, true).hide().css("width", 0);
 
-        // スライドを0番目に戻す（アニメーション付き）
+        // 現在表示中のスライドをフェードアウトさせ、0番目に戻す
         $slides.stop(true, true).fadeOut(fadeSpeed);
         $slides.eq(0).fadeIn(fadeSpeed);
-        imgNo = 0; // 番号をリセット
+
+        imgNo = 0; // 番号リセット
       },
     );
+  });
+}
+
+function initVideoHover() {
+  const items = document.querySelectorAll(".grid-item");
+
+  items.forEach((item) => {
+    const video = item.querySelector(".hover-video");
+    let pauseTimeout; // タイマーIDを格納する変数
+
+    item.addEventListener("mouseenter", async () => {
+      // 1秒以内に再びホバーされた場合、停止・リセットのタイマーをキャンセルする
+      clearTimeout(pauseTimeout);
+
+      if (!video.src) {
+        video.src = video.dataset.src;
+        video.load();
+        console.log("Video source loaded on hover.");
+      }
+
+      try {
+        await video.play();
+        item.classList.add("is-playing");
+        console.log("Playback started. Thumbnail hidden.");
+      } catch (error) {
+        console.error("Playback failed. The browser might have blocked it.", error);
+      }
+    });
+
+    item.addEventListener("mouseleave", () => {
+      // 1. サムネイルはすぐに表示（フェードイン）を開始させる
+      item.classList.remove("is-playing");
+
+      // 2. 1秒後（1000ミリ秒後）に動画を停止し、最初のフレームに戻す
+      pauseTimeout = setTimeout(() => {
+        video.pause();
+        video.currentTime = 0;
+        console.log("Video paused and reset after delay.");
+      }, 1000);
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") {
+        // 動いているタイマーを強制キャンセル
+        clearTimeout(pauseTimeout);
+
+        // 動画を強制停止して最初のフレームに戻す
+        video.pause();
+        video.currentTime = 0;
+
+        // サムネイルを強制的に再表示する
+        item.classList.remove("is-playing");
+        console.log("Tab hidden. Video and thumbnail state reset.");
+      }
+    });
   });
 }
 
@@ -262,6 +324,7 @@ function initAllScripts() {
   initMenuToggle();
   initSlider();
   initflickity();
+  initVideoHover();
   $(".masonry").masonry({
     itemSelector: ".masonry-item",
   });
@@ -455,44 +518,6 @@ barba.init({
       },
     },
   ],
-});
-
-const items = document.querySelectorAll(".grid-item");
-
-items.forEach((item) => {
-  const video = item.querySelector(".hover-video");
-  let pauseTimeout; // タイマーIDを格納する変数
-
-  item.addEventListener("mouseenter", async () => {
-    // 1秒以内に再びホバーされた場合、停止・リセットのタイマーをキャンセルする
-    clearTimeout(pauseTimeout);
-
-    if (!video.src) {
-      video.src = video.dataset.src;
-      video.load();
-      console.log("Video source loaded on hover.");
-    }
-
-    try {
-      await video.play();
-      item.classList.add("is-playing");
-      console.log("Playback started. Thumbnail hidden.");
-    } catch (error) {
-      console.error("Playback failed. The browser might have blocked it.", error);
-    }
-  });
-
-  item.addEventListener("mouseleave", () => {
-    // 1. サムネイルはすぐに表示（フェードイン）を開始させる
-    item.classList.remove("is-playing");
-
-    // 2. 1秒後（1000ミリ秒後）に動画を停止し、最初のフレームに戻す
-    pauseTimeout = setTimeout(() => {
-      video.pause();
-      video.currentTime = 0;
-      console.log("Video paused and reset after delay.");
-    }, 1000);
-  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {

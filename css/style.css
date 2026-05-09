@@ -1000,6 +1000,9 @@ li.current a {
 .ratio2_3 {
   aspect-ratio: 2 / 3;
 }
+.ratio2_1 {
+  aspect-ratio: 2 / 1;
+}
 
 .grid-item img {
   position: absolute;
